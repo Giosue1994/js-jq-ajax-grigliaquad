@@ -21,9 +21,11 @@ $('.col').click(function()
           $(colonnaColorata).text(numeroRandom);
 
           if (numeroRandom <= 5) {
+            $(colonnaColorata).removeClass('green');
             $(colonnaColorata).addClass('yellow');
           } else {
-            $(colonnaColorata).addClass('green')
+            $(colonnaColorata).removeClass('yellow');
+            $(colonnaColorata).addClass('green');
           }
         },
 
