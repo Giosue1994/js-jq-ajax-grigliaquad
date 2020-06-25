@@ -5,10 +5,10 @@ $(document).ready(function() {
 // Se è <= 5 il quadrato diventa giallo,
 // se è > di 5 il quadrato diventa verde.
 // Il numero ottenuto appare al centro del quadrato
-
-$('.col').click(function()
+stampaBox();
+$('.box').click(function()
   {
-    var colonnaColorata = this;
+    var boxColorato = this;
 
     $.ajax(
       {
@@ -18,14 +18,12 @@ $('.col').click(function()
         success: function(data) {
           var numeroRandom = data.response;
 
-          $(colonnaColorata).text(numeroRandom);
+          $(boxColorato).text(numeroRandom);
 
           if (numeroRandom <= 5) {
-            $(colonnaColorata).removeClass('green');
-            $(colonnaColorata).addClass('yellow');
+            $(boxColorato).removeClass('green').addClass('yellow');
           } else {
-            $(colonnaColorata).removeClass('yellow');
-            $(colonnaColorata).addClass('green');
+            $(boxColorato).removeClass('yellow').addClass('green');
           }
         },
 
@@ -35,7 +33,24 @@ $('.col').click(function()
 
       }
     );
+
   }
 );
 
 });
+
+function stampaBox() {
+
+  var source = $("#entry-template").html();
+  var template = Handlebars.compile(source);
+
+  for (var i = 1; i <= 36; i++) {
+
+    var context = {};
+    var html = template(context);
+
+    $('.container').append(html);
+
+  }
+
+}
